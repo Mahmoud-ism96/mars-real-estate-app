@@ -17,11 +17,16 @@
 
 package com.example.android.marsrealestate.network
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
-class MarsProperty(
+@Parcelize
+data class MarsProperty(
     val id: String,
-    val type: String,
     @Json(name = "img_src") val imgSrcUrl: String,
+    val type: String,
     val price: Double
-)
+) : Parcelable {
+    val isRental: Boolean get() = type == "rent"
+}
